@@ -197,8 +197,8 @@ class GreenPassCovid19Checker
     private static function verifyRecoveryStatement(RecoveryStatement $cert, \DateTime $validation_date, string $scanMode, $certificate)
     {
         $isRecoveryBis = self::isRecoveryBis($cert, $certificate);
-        $start_day = $isRecoveryBis ? self::getValueFromValidationRules(ValidationRules::RECOVERY_CERT_PV_START_DAY, "GENERIC") : self::getValueFromValidationRules(ValidationRules::RECOVERY_CERT_START_DAY, "GENERIC");
-        $end_day = $isRecoveryBis ? self::getValueFromValidationRules(ValidationRules::RECOVERY_CERT_PV_END_DAY, "GENERIC") : self::getValueFromValidationRules(ValidationRules::RECOVERY_CERT_END_DAY, "GENERIC");
+        $start_day = self::getValueFromValidationRules($isRecoveryBis ? ValidationRules::RECOVERY_CERT_PV_START_DAY : ValidationRules::RECOVERY_CERT_START_DAY, "GENERIC");
+        $end_day = self::getValueFromValidationRules($isRecoveryBis ? ValidationRules::RECOVERY_CERT_PV_END_DAY : ValidationRules::RECOVERY_CERT_END_DAY, "GENERIC");
 
         $valid_from = $cert->validFrom;
 
